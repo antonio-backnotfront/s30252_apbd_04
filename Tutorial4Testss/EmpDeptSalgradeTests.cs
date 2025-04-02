@@ -1,5 +1,10 @@
 ﻿using Tutorial3.Models;
 
+namespace Tutorial3Tests;
+using Tutorial3.Models;
+using System.Linq;
+using Xunit;
+
 public class EmpDeptSalgradeTests
 {
     // 1. Simple WHERE filter
@@ -9,7 +14,7 @@ public class EmpDeptSalgradeTests
     {
         var emps = Database.GetEmps();
 
-        List<Emp> result = null; 
+        List<Emp> result = emps.Where(e => e.Job == "SALESMAN").ToList(); 
 
         Assert.Equal(2, result.Count);
         Assert.All(result, e => Assert.Equal("SALESMAN", e.Job));
